@@ -28,6 +28,8 @@ footer{
     text-align: center;
     position: static;
     bottom: 0;
+    padding-top: 15px;
+    padding-bottom: 1px;
 }
 .tabla{
     width: 95%;
