@@ -25,7 +25,7 @@
                 $departamento->appendChild($ficheroXML->createElement("codigoDepartamento", $registro->CodDepartamento));
                 $departamento->appendChild($ficheroXML->createElement("descripcionDepartamento", $registro->DescDepartamento));
             }
-            $ficheroXML->save("../tmp/Departamentos.xml");
+            $ficheroXML->save("../tmp/DepartamentosExportar.xml");
             //header("Content-Disposition: attachment; filename=" . "Departamentos.xml"); // Descargar el fichero a local
 
             echo "<h3>Se ha realizado correctamente la exportación</h3>";

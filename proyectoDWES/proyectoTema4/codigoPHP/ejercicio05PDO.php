@@ -34,7 +34,7 @@
             
             // Mostramos los errores por pantalla
         } catch (PDOException $excepcion) {
-            echo "<h1>Se ha producido un error, disculpe las molestias</h1>";
+            echo "<h1>Error al acabar la transaccion</h1>";
             if ($excepcion->getCode() == 1045) { //codigo de error de conexion
                 echo "<h4>No se ha podido establecer la conexión a la base de datos</h4>";
             } else {

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Departamentos>
+  <Departamento>
+    <codigoDepartamento>BIO</codigoDepartamento>
+    <descripcionDepartamento>Departamento de biologia</descripcionDepartamento>
+  </Departamento>
+  <Departamento>
+    <codigoDepartamento>CCC</codigoDepartamento>
+    <descripcionDepartamento>DEP DE BIOTECNOLOGÍA</descripcionDepartamento>
+  </Departamento>
+  <Departamento>
+    <codigoDepartamento>CD1</codigoDepartamento>
+    <descripcionDepartamento>Departamento Preparado 1</descripcionDepartamento>
+  </Departamento>
+  <Departamento>
+    <codigoDepartamento>CD2</codigoDepartamento>
+    <descripcionDepartamento>Departamento Preparado 2</descripcionDepartamento>
+  </Departamento>
+  <Departamento>
+    <codigoDepartamento>CD3</codigoDepartamento>
+    <descripcionDepartamento>Departamento Preparado 3</descripcionDepartamento>
+  </Departamento>
+  <Departamento>
+    <codigoDepartamento>INF</codigoDepartamento>
+    <descripcionDepartamento>Departamento de informatica</descripcionDepartamento>
+  </Departamento>
+  <Departamento>
+    <codigoDepartamento>QUI</codigoDepartamento>
+    <descripcionDepartamento>Departamento Quimica</descripcionDepartamento>
+  </Departamento>
+  <Departamento>
+    <codigoDepartamento>TEC</codigoDepartamento>
+    <descripcionDepartamento>Departamento de tecnologia</descripcionDepartamento>
+  </Departamento>
+</Departamentos>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Departamentos>
+  <Departamento>
+    <codigoDepartamento>FIS</codigoDepartamento>
+    <descripcionDepartamento>Departamento de fisica</descripcionDepartamento>
+  </Departamento>
+</Departamentos>
