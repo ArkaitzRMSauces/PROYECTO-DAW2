@@ -58,10 +58,30 @@
                 <td><a href="./codigoPHP/ejercicio03PDO.php"><img src="webroot/images/ejecutar.png" class="imagenes"></a></td>
                 <td><a href="./mostrarCodigo/muestraEjercicio03PDO.php"><img src="webroot/images/mostrar.png" class="imagenes"></a></td>                
             </tr>
-             <tr>
+            <tr>
                 <td>4. Formulario   de   búsqueda   de   departamentos   por   descripción   (por   una   parte   del   campoDescDepartamento, si el usuario no pone nada deben aparecer todos los departamentos)</td>
                 <td><a href="./codigoPHP/ejercicio04PDO.php"><img src="webroot/images/ejecutar.png" class="imagenes"></a></td>
                 <td><a href="./mostrarCodigo/muestraEjercicio04PDO.php"><img src="webroot/images/mostrar.png" class="imagenes"></a></td>                
+            </tr>
+            <tr>
+                <td>5. Pagina web que añade tres registros a nuestra tabla Departamento utilizando tres instrucciones insert y una transacción, de tal forma que se añadan los tres registros o no se añada ninguno</td>
+                <td><a href="./codigoPHP/ejercicio05PDO.php"><img src="webroot/images/ejecutar.png" class="imagenes"></a></td>
+                <td><a href="./mostrarCodigo/muestraEjercicio05PDO.php"><img src="webroot/images/mostrar.png" class="imagenes"></a></td>                
+            </tr>
+            <tr>
+                <td>6. Pagina web que cargue registros en la tabla Departamento desde un array departamentosnuevos utilizando una consulta preparada</td>
+                <td><a href="./codigoPHP/ejercicio06PDO.php"><img src="webroot/images/ejecutar.png" class="imagenes"></a></td>
+                <td><a href="./mostrarCodigo/muestraEjercicio06PDO.php"><img src="webroot/images/mostrar.png" class="imagenes"></a></td>                
+            </tr>
+            <tr>
+                <td>7. Página web que toma datos (código y descripción) de un fichero xml y los añade a la tabla Departamento de nuestra base de datos. (IMPORTAR)</td>
+                <td><a href="./codigoPHP/ejercicio07PDO.php"><img src="webroot/images/ejecutar.png" class="imagenes"></a></td>
+                <td><a href="./mostrarCodigo/muestraEjercicio07PDO.php"><img src="webroot/images/mostrar.png" class="imagenes"></a></td>                
+            </tr>
+            <tr>
+                <td>8. Página web que toma datos (código y descripción) de la tabla Departamento y guarda en unfichero departamento.xml. (COPIA DE SEGURIDAD / EXPORTAR)</td>
+                <td><a href="./codigoPHP/ejercicio08PDO.php"><img src="webroot/images/ejecutar.png" class="imagenes"></a></td>
+                <td><a href="./mostrarCodigo/muestraEjercicio08PDO.php"><img src="webroot/images/mostrar.png" class="imagenes"></a></td>                
             </tr>
         </table>
         <footer>
