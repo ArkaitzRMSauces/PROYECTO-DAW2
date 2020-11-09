@@ -26,7 +26,7 @@
                 $departamento->appendChild($ficheroXML->createElement("codigoDepartamento", $registro->CodDepartamento));
                 $departamento->appendChild($ficheroXML->createElement("descripcionDepartamento", $registro->DescDepartamento));
                 $departamento->appendChild($ficheroXML->createElement("FechaBaja", $registro->FechaBaja));
-                $departamento->appendChild($ficheroXML->createElement("VolumenNegocio", $registro->VolumenNegocio));                 
+                $departamento->appendChild($ficheroXML->createElement("VolumenNegocio", $registro->VolumenNegocio));                  
             }
             $ficheroXML->saveXML();
             $ficheroXML->save("../tmp/departamento.xml");
