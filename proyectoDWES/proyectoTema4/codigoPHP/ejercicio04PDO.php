@@ -41,9 +41,7 @@
                     $consultaSelect = $miDB->prepare('SELECT * FROM Departamento WHERE descDepartamento LIKE ("%":descripcion"%")');//Creamos la consulta preparada
                     $consultaSelect->bindParam(":descripcion", $arrayFormulario['descDepartamento']);//Parametro de la consulta preparada
                     $consultaSelect->execute();//Ejecutamos la sentencia
-                    if($consultaSelect->rowCount() === 0){//Contamos si la sentencia a devuelto alguna fila, sino, no habrá encontrado nada
-                        echo "<h2>No hay ningún departamento con esa descripción</h2>";
-                    } else {//Creamos la tabla con los nombres de los campos
+                    if($consultaSelect->rowCount() != 0){//Contamos si la sentencia a devuelto alguna fila, sino, no habrá encontrado nada
                         echo "<table border='0'>";
                         echo "<tr>";
                         echo "<th>Codigo</th>";
@@ -61,7 +59,9 @@
                             echo "</tr>";
                             $objetoDepartamento = $consultaSelect->fetchObject();//Avanzamos puntero dentro del bucle
                         }
-                        echo "</table>";   
+                        echo "</table>";
+                    } else {//Creamos la tabla con los nombres de los campos
+                        echo "<h2>No hay ningún departamento con esa descripción</h2>";
                     } 
                 }
             }catch (PDOException $miExceptionPDO) { 

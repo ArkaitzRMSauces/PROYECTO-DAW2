@@ -31,15 +31,15 @@
             $consultaPreparada->bindParam(':fechaBaja', $fechaBaja);
             $consultaPreparada->bindParam(':volumenNegocio', $volumenNegocio);
             // El foreach recorre el array DepartamentosNuevos
+            $miDB->beginTransaction();
             foreach ($aDepartamentosNuevos as $key => $value) {
-                $miDB->beginTransaction();
                 $consultaPreparada->bindParam(':codigo', $value[0]); // Ejecutamos el primer valor del array
                 $consultaPreparada->bindParam(':descripcion', $value[1]); // Ejecutamos el segundo valor del array
                 $consultaPreparada->bindParam(':fechaBaja', $value[2]); // Ejecutamos el tercer valor del array
                 $consultaPreparada->bindParam(':volumenNegocio', $value[3]); // Ejecutamos el cuarto valor del array
                 $consultaPreparada->execute();
-                $miDB->commit();
             }
+            $miDB->commit();
             $consultaSelect = $miDB->prepare('SELECT * FROM Departamento'); //consulta preparada que mostrara todos los registros de la tabla Departamentos
             $consultaSelect->execute();
 

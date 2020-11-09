@@ -12,14 +12,14 @@
          */
         require_once '../config/confDBPDO.php';
 
-        $xml = simplexml_load_file("../tmp/DepartamentosExportar.xml"); //Cargamos el archivo 
+        $ficheroxml = simplexml_load_file("../tmp/departamento.xml"); //Cargamos el archivo 
 
         try {
             $miDB = new PDO(DNS, USER, PASSWORD);
             $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (Exception $exp) {
             echo $exp->getMessage();
-            echo "ERROR";
+            echo "Error con la conexion";
         }
         try {
             $miDB->beginTransaction();
@@ -30,26 +30,29 @@
                                                 DescDepartamento VARCHAR(255) NOT NULL,
                                                 FechaBaja DATE NULL,
                                                 VolumenNegocio float NULL
-                                            )  ENGINE=INNODB;');
+                                            )ENGINE=INNODB;'
+                                            );
             $consultaCrear->execute();
 
-            foreach ($xml as $value) {
-                $sqlDepartamento = "INSERT INTO Departamento(CodDepartamento,DescDepartamento,VolumenNegocio) VALUES(:codDepartamento,:descDepartamento,:volumenNegocio)";
+            foreach ($ficheroxml as $value) {
+                $sqlDepartamento = "INSERT INTO Departamento(CodDepartamento,DescDepartamento,FechaBaja,VolumenNegocio) VALUES(:codDepartamento,:descDepartamento,:fechaBaja,:volumenNegocio)";
                 $consulta = $miDB->prepare($sqlDepartamento);
                 $parametros = [
                     ":codDepartamento" => $value->CodDepartamento,
                     ":descDepartamento" => $value->DescDepartamento,
+                    ":fechaBaja" => $value->FechaBaja,
                     ":volumenNegocio" => $value->VolumenNegocio
                 ];
                 $consulta->execute($parametros);
             }
             $miDB->commit();
-            echo "<h3>Se ha realizado la importacion</h3>";
-        } catch (Exception $exp) {
+            echo "<h3>Importacion realizada</h3>";
+        } catch (Exception $error) {
             $miDB->rollBack();
-            echo $exp->getMessage();
-            echo $exp->getCode();
-            echo "ERROR";
+            echo $error->getMessage();
+            echo "<br>";
+            echo $error->getCode();
+            echo "<br>Error al importar";
         }finally{
             unset($miDB);
         }

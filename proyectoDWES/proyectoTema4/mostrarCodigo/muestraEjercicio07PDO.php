@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">        
-        <title>MostrarEjercicio 04 - Arkaitz Rodriguez Martinez</title>        
+        <title>MostrarEjercicio 07 - Arkaitz Rodriguez Martinez</title>        
     </head>
     <body>
         <?php
