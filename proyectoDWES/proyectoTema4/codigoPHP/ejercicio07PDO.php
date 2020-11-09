@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Ejercicio 08 PDO - Arkaitz Rodriguez Martinez</title>
+        <title>Ejercicio 07 PDO - Arkaitz Rodriguez Martinez</title>
     </head>
     <body>
         <?php
@@ -12,7 +12,7 @@
          */
         require_once '../config/confDBPDO.php';
 
-        $xml = simplexml_load_file("../tmp/DepartamentosImportar.xml"); //Cargamos el archivo 
+        $xml = simplexml_load_file("../tmp/DepartamentosExportar.xml"); //Cargamos el archivo 
 
         try {
             $miDB = new PDO(DNS, USER, PASSWORD);

@@ -19,9 +19,9 @@
 
             $sentenciaSQL = "INSERT INTO Departamento VALUES (:codigo,:descripcion,:fechaBaja,:volumenNegocio);"; // Sentencia SQL que deseamos realizar
             $aDepartamentosNuevos = array(
-                array('CD1', 'Departamento Preparado 1', null, 50),
-                array('CD2', 'Departamento Preparado 2', null, 80),
-                array('CD3', 'Departamento Preparado 3', null, 90),
+                array('BIO', 'Departamento de Biotecnologia', null, 50),
+                array('TEC', 'Departamento de Tecnologia', null, 80),
+                array('MAT', 'Departamento de matematicas', null, 90),
             );
 
             // Hacemos la consulta preparada
@@ -44,7 +44,7 @@
             $consultaSelect->execute();
 
             // Si todo se realiza coreectamente mostramos un mensaje
-            echo "<h3>Insercción realizada correctamente.</h3>";
+            echo "<h3>Exito</h3>";
         } catch (PDOException $mensajeError) {
             echo "Error: " . $mensajeError->getMessage() . "<br>";
             echo "Código de error: " . $mensajeError->getCode();

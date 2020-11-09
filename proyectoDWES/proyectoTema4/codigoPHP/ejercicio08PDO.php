@@ -28,7 +28,7 @@
             $ficheroXML->save("../tmp/DepartamentosExportar.xml");
             //header("Content-Disposition: attachment; filename=" . "Departamentos.xml"); // Descargar el fichero a local
 
-            echo "<h3>Se ha realizado correctamente la exportación</h3>";
+            echo "<h3>Exportacion realizada</h3>";
         } catch (PDOException $mensajeError) {
             echo "Error: " . $mensajeError->getMessage() . "<br>";
             echo "Código de error: " . $mensajeError->getCode();
