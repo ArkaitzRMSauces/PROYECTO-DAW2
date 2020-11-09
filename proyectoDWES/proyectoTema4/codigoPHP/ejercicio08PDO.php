@@ -10,8 +10,10 @@
          * @author Arkaitz Rodriguez Martinez
          * @since 09-11-2020
          */
+        require_once '../config/confDBPDO.php';
         try {
-            $miDB = new PDO('mysql:host=192.168.20.19;dbname=DAW213DBdepartamentos', 'usuarioDAW213Departamentos', 'paso');
+            // Datos de la conexión a la base de datos
+            $miDB = new PDO(DNS, USER, PASSWORD);
             $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sentenciaSQL = $miDB->query("SELECT * FROM Departamento;");
             $ficheroXML = new DOMDocument("1.0", "utf-8"); // Creamos el fichero

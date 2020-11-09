@@ -11,9 +11,10 @@
          * @author Arkaitz Rodriguez Martinez
          * @since 07-11-2020
          */
+        require_once '../config/confDBPDO.php';
         try {
             // Datos de la conexión a la base de datos
-            $miDB = new PDO('mysql:host=192.168.20.19;dbname=DAW213DBdepartamentos', 'usuarioDAW213Departamentos', 'paso');
+            $miDB = new PDO(DNS, USER, PASSWORD);
             $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Cómo capturar las excepciones y muestre los errores
 
             $sentenciaSQL = "INSERT INTO Departamento values (:codDep, :descDep);"; // Sentencia SQL que deseamos realizar
