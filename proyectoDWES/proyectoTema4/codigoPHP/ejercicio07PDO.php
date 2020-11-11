@@ -5,57 +5,73 @@
         <title>Ejercicio 07 PDO - Arkaitz Rodriguez Martinez</title>
     </head>
     <body>
-        <?php
-        /**
+       <?php
+       /**
          * @author Arkaitz Rodriguez Martinez
          * @since 09-11-2020
          */
         require_once '../config/confDBPDO.php';
-
-        $ficheroxml = simplexml_load_file("../tmp/departamento.xml"); //Cargamos el archivo 
-
-        try {
-            $miDB = new PDO(DNS, USER, PASSWORD);
-            $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (Exception $exp) {
-            echo $exp->getMessage();
-            echo "Error con la conexion";
-        }
-        try {
-            $miDB->beginTransaction();
-            $consultaDrop = $miDB->prepare('DROP TABLE Departamento');
-            $consultaDrop->execute();
-            $consultaCrear = $miDB->prepare('CREATE TABLE IF NOT EXISTS Departamento (
-                                                CodDepartamento CHAR(3) PRIMARY KEY,
-                                                DescDepartamento VARCHAR(255) NOT NULL,
-                                                FechaBaja DATE NULL,
-                                                VolumenNegocio float NULL
-                                            )ENGINE=INNODB;'
-                                            );
-            $consultaCrear->execute();
-
-            foreach ($ficheroxml as $value) {
-                $sqlDepartamento = "INSERT INTO Departamento(CodDepartamento,DescDepartamento,FechaBaja,VolumenNegocio) VALUES(:codDepartamento,:descDepartamento,:fechaBaja,:volumenNegocio)";
-                $consulta = $miDB->prepare($sqlDepartamento);
-                $parametros = [
-                    ":codDepartamento" => $value->CodDepartamento,
-                    ":descDepartamento" => $value->DescDepartamento,
-                    ":fechaBaja" => $value->FechaBaja,
-                    ":volumenNegocio" => $value->VolumenNegocio
-                ];
-                $consulta->execute($parametros);
+        $entradaOK = true;
+        $archivo = null;
+        $error = null;
+        if (isset($_REQUEST["importar"])) {
+            if (!empty($_FILES["archivo"]["name"])) {
+                $archivo = $_FILES['archivo']['tmp_name'];
+            } else {
+                $error = "Introduce un archivo";
+                $entradaOK = false;
             }
-            $miDB->commit();
-            echo "<h3>Importacion realizada</h3>";
-        } catch (Exception $error) {
-            $miDB->rollBack();
-            echo $error->getMessage();
-            echo "<br>";
-            echo $error->getCode();
-            echo "<br>Error al importar";
-        }finally{
-            unset($miDB);
+        } else {
+            $entradaOK = false;
         }
-        ?>  
+        if ($entradaOK) {
+            try {
+                echo $archivo;
+                $dom = new DOMDocument;
+                $dom->load($archivo);
+                $miDB = new PDO(DNS, USER, PASSWORD);
+                $pre = $miDB->prepare("Select * from Departamento");
+                $pre -> execute();
+                $prepare = $miDB->prepare("Insert into Departamento values (:codigo, :descripcion, :fecha, :volumen)");
+
+                $departamento = $dom->getElementsByTagName('Departamento');
+                $miDB->beginTransaction();
+                foreach ($departamento as $dep) {
+                    $valores = $dep->childNodes;
+
+                    $aValores = array(
+                        ":codigo" => $valores->item(1)->nodeValue,
+                        ":descripcion" => $valores->item(3)->nodeValue,
+                        ":fecha" => empty($valores->item(5)->nodeValue) ? null : $valores->item(5)->nodeValue,
+                        ":volumen" => $valores->item(7)->nodeValue
+                    );
+                    
+                    $eje = $prepare->execute($aValores);
+
+                    if (!$eje) {
+                        throw new Exception("Error al insertar en la base de datos ".$prepare->errorCode());
+                    }
+                }
+                $miDB->commit();
+                echo "<p> Todos los datos han sido importados</p>";
+            } catch (Exception $e) {
+                echo "Error " . $e->getCode() . ", " . $e->getMessage() . ".";
+                $miDB->rollBack();
+            } finally {
+                unset($miDB);
+            }
+        } else {
+            ?>
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST"  enctype = "multipart/form-data">
+                <input type="file" name="archivo" >
+                <?php
+                if (is_null($error)) {
+                    echo "<span style=\"color:blue;\">$error</span>";
+                }
+                ?>
+                <br>
+                <input type="submit" name="importar" value="Importar">
+            </form>
+        <?php } ?>
     </body>
 </html>

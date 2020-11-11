@@ -5,32 +5,41 @@
         <title>Ejercicio 08 PDO - Arkaitz Rodriguez Martinez</title>
     </head>
     <body>
+        <div>
+            <a href="descarga.php">Descargar</a>
         <?php
         /**
          * @author Arkaitz Rodriguez Martinez
          * @since 09-11-2020
          */
         require_once '../config/confDBPDO.php';
+        $documentoXML = new DOMDocument(); // Creamos el fichero
+        $departamentos = $documentoXML->createElement('Departamentos');
+        $departamentos = $documentoXML->appendChild($departamentos);
         try {
             // Datos de la conexión a la base de datos
             $miDB = new PDO(DNS, USER, PASSWORD);
             $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sentenciaSQL = $miDB->query("SELECT * FROM Departamento;");
-            $ficheroXML = new DOMDocument(); // Creamos el fichero
-            $ficheroXML->formatOutput = true; // Hacemos que el fichero salga con espacios y tabulado
-            $raiz = $ficheroXML->appendChild($ficheroXML->createElement("Departamentos")); // Creamos la rama hijos de departamentos
-            
-             
-            while ($registro = $sentenciaSQL->fetchObject()) { // creamos un bucle para sacar todos los elementos en la estructura XML
-                $departamento = $raiz->appendChild($ficheroXML->createElement("Departamento"));
-                $departamento->appendChild($ficheroXML->createElement("codigoDepartamento", $registro->CodDepartamento));
-                $departamento->appendChild($ficheroXML->createElement("descripcionDepartamento", $registro->DescDepartamento));
-                $departamento->appendChild($ficheroXML->createElement("FechaBaja", $registro->FechaBaja));
-                $departamento->appendChild($ficheroXML->createElement("VolumenNegocio", $registro->VolumenNegocio));                  
-            }
-            $ficheroXML->saveXML();
-            $ficheroXML->save("../tmp/departamento.xml");
-            //Descargar el fichero a local
+            $consulta = "SELECT * FROM Departamento;";
+            $sentencia = $miDB->prepare($consulta);
+            $sentencia->execute();
+            while ($registro = $sentencia->fetchObject()) { // creamos un bucle para sacar todos los elementos en la estructura XML
+                $departamento = $documentoXML->createElement("Departamento");
+                $departamento = $departamentos->appendChild($departamento);
+                $codigo = $documentoXML->createElement('Codigo',$registro->CodDepartamento);
+                $codigo = $departamento->appendChild($codigo);
+                $descripcion = $documentoXML->createElement('Descripcion',$registro->DescDepartamento);
+                $descripcion = $departamento->appendChild($descripcion);
+                $fechaBaja = $documentoXML->createElement('FechaBaja',$registro->FechaBaja);
+                $fechaBaja = $departamento->appendChild($fechaBaja);
+                $volumenNegocio = $documentoXML->createElement('VolumenNegocio',$registro->VolumenNegocio);
+                $volumenNegocio = $departamento->appendChild($volumenNegocio);
+            } 
+            $documentoXML->formatOutput = true;
+            $documentoXML->saveXML();
+            $documentoXML->save("../tmp/departamento.xml");
+            echo "<br>";
+            highlight_file("../tmp/departamento.xml");
 
             echo "<h3>Exportacion realizada</h3>";
         } catch (PDOException $mensajeError) {
@@ -40,5 +49,6 @@
             unset($miDB);
         }
         ?>
+        </div>
     </body>
 </html>

@@ -18,9 +18,9 @@
             $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Cómo capturar las excepciones y muestre los errores
             
             $arrayInserciones = [ //Inicializamos un array para insertar los valores
-                "INSERT INTO Departamento VALUES ('T1', 'Transacción 1', null, 25);",
-                "INSERT INTO Departamento VALUES ('T2', 'Transacción 2', null, 50);",
-                "INSERT INTO Departamento VALUES ('T3', 'Transacción 3', null, 75);"
+                "INSERT INTO Departamento VALUES ('T1', 'T1', null, 25);",
+                "INSERT INTO Departamento VALUES ('T2', 'T2', null, 50);",
+                "INSERT INTO Departamento VALUES ('T3', 'T3', null, 75);"
             ];
             
             // Iniciamos la transacción
@@ -31,7 +31,7 @@
                 $contador++;
             }
             $miDB->commit();
-            echo "<h3>Se han realizado las 3 transacciones correctamente</h3>";
+            echo "<h3>Transaccion realizada</h3>";
             echo "<br><br>";
             
             // Mostramos los errores por pantalla
