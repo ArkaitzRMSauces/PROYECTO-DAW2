@@ -14,7 +14,7 @@
         $entradaOK = true;
         $archivo = null;
         $error = null;
-        if (isset($_REQUEST["importar"])) {
+        if (isset($_POST["importar"])) {
             if (!empty($_FILES["archivo"]["name"])) {
                 $archivo = $_FILES['archivo']['tmp_name'];
             } else {
