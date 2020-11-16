@@ -17,15 +17,18 @@
             
             $arrayErrores = [ //Recoge los errores del formulario
                 'codDepartamento' => null,
-                'descDepartamento' => null
+                'descDepartamento' => null,
+                'volumenNegocio' => null
             ];
             $arrayFormulario = [ //Recoge los datos del formulario
                 'codDepartamento' => null,
-                'descDepartamento' => null
+                'descDepartamento' => null,
+                'volumenNegocio' => null
             ];
             if (isset($_POST['enviar'])) { //Código que se ejecuta cuando se envía el formulario
                 $arrayErrores['codDepartamento'] = validacionFormularios::comprobarAlfabetico($_POST['codDepartamento'], 3, 3, 1);  //Máximo, mínimo y opcionalidad
                 $arrayErrores['descDepartamento'] = validacionFormularios::comprobarAlfabetico($_POST['descDepartamento'], 255, 1, 1);  //Máximo, mínimo y opcionalidad
+                $arraErrores['volumenNegocio'] = validacionFormularios::comprobarFloat($_POST['volumenNegocio'], 255, 0, PHP_FLOAT_MAX, 1);  //maximo, mínimo y opcionalidad
                 
                 foreach ($arrayErrores as $campo => $error) { //Recorre el array en busca de mensajes de error
                     if ($error != null) { //Si lo encuentra vacia el campo y cambia la condiccion
@@ -43,13 +46,15 @@
                 //Mostramos los datos por pantalla
                 $arrayFormulario['codDepartamento'] = strtoupper($_POST['codDepartamento']); //Todo en mayúsculas
                 $arrayFormulario['descDepartamento'] = ucfirst($_POST['descDepartamento']); //La primera letra en mayúscula
+                $arrayFormulario['volumenNegocio'] = ucfirst($_POST['volumenNegocio']);
             
             try {   
                 $miDB = new PDO(DNS, USER, PASSWORD);//Creamos el objeto PDO, con la conexion
                 $miDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $consultaInsert = $miDB->prepare('INSERT INTO Departamento (CodDepartamento, DescDepartamento) VALUES (:codigo, :descripcion)');//Creamos la consulta preparada
+                $consultaInsert = $miDB->prepare('INSERT INTO Departamento (CodDepartamento, DescDepartamento, VolumenNegocio) VALUES (:codigo, :descripcion, :volumen)');//Creamos la consulta preparada
                 $consultaInsert->bindParam(":codigo", $arrayFormulario['codDepartamento']);//Parametro de la consulta preparada
                 $consultaInsert->bindParam(":descripcion", $arrayFormulario['descDepartamento']);//Parametro de la consulta preparada
+                $consultaInsert->bindParam(":volumen", $arrayFormulario['volumenNegocio']);//Parametro de la consulta preparada
                 $consultaInsert->execute();//Ejecutamos la sentencia
                 $consultaSelect = "SELECT * FROM Departamento";//Creamos la consulta de visualizacion
                 $resultadoConsulta = $miDB->query($consultaSelect); //La metemos en una variable
@@ -106,6 +111,19 @@
                     <?php
                     if ($arrayErrores['descDepartamento'] != NULL) {
                         echo $arrayErrores['descDepartamento']; //Mensaje de error que tiene el $arrayErrores
+                    }
+                    ?>
+                    </div>
+                    <br>
+                    <div>
+                        <label>Volumen Negocio</label>
+                        <input type = "text" name = "volumenNegocio"
+                               value="<?php if($arrayErrores['volumenNegocio'] == NULL && isset($_POST['volumenNegocio'])){ echo $_POST['volumenNegocio'];} ?>"><br>
+                    </div>
+                    <div>
+                    <?php
+                    if ($arrayErrores['volumenNegocio'] != NULL) {
+                        echo $arrayErrores['volumenNegocio']; //Mensaje de error que tiene el $arrayErrores
                     }
                     ?>
                     </div>
