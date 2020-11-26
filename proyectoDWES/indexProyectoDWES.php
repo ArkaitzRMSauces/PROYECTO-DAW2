@@ -29,10 +29,13 @@
         <div>
             <p><a href="proyectoTema4/indexProyectoTema4.php">TEMA 4: TÉCNICAS DE ACCESO A DATOS EN PHP</a></p>
         </div>
-        <!--
         <div>
-            <p>TEMA 5: DESARROLLO DE APLICACIONES WEB UTILIZANDO CÓDIGO EMBEBIDO</p>
+            <p><a href="../MtoDeDepartamentosTema4/mtoDepartamentos.php">MTO DEPARTAMENTOS - TEMA 4</a></p>
         </div>
+        <div>
+            <p><a href="../../proyectoTema5/indexProyectoTema5.php">TEMA 5: DESARROLLO DE APLICACIONES WEB UTILIZANDO CÓDIGO EMBEBIDO</a></p>
+        </div>
+        <!--
         <div>
             <p>TEMA 6: PROGRAMACIÓN ORIENTADA A OBJETOS EN PHP</p>
         </div>

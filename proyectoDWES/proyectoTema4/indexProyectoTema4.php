@@ -30,7 +30,22 @@
             <tr>
                 <td>Script Borrar</td>
                 <td><a href="../proyectoTema4/scriptDB/BorraDAW205DBDepartamentos.sql"><img src="webroot/images/ejecutar.png" class="imagenes"></a></td>
-                <td><a href="../proyectoTema4/mostrarCodigo/muestraBorra.php"><img src="webroot/images/mostrar.png" class="imagenes"></a></td>                
+                <td><a href="../proyectoTema4/mostrarCodigo/muestraBorraDBDepartamentos.php"><img src="webroot/images/mostrar.png" class="imagenes"></a></td>                
+            </tr>
+			<tr>
+                <td>Script Crear 1&1</td>
+                <td><a href="../proyectoTema4/scriptDB/crearTabla.sql"><img src="webroot/images/ejecutar.png" class="imagenes"></a></td>
+                <td><a href="../proyectoTema4/mostrarCodigo/muestraInsertar.php"><img src="webroot/images/mostrar.png" class="imagenes"></a></td>                
+            </tr>
+            <tr>
+                <td>Script Carga Inicial 1&1</td>
+                <td><a href="../proyectoTema4/scriptDB/insertarTablas.sql"><img src="webroot/images/ejecutar.png" class="imagenes"></a></td>
+                <td><a href="../proyectoTema4/mostrarCodigo/muestraInsertar.php"><img src="webroot/images/mostrar.png" class="imagenes"></a></td>                
+            </tr>
+            <tr>
+                <td>Script Borrar 1&1</td>
+                <td><a href="../proyectoTema4/scriptDB/borrarTablas.sql"><img src="webroot/images/ejecutar.png" class="imagenes"></a></td>
+                <td><a href="../proyectoTema4/mostrarCodigo/muestraBorrar.php"><img src="webroot/images/mostrar.png" class="imagenes"></a></td>                
             </tr>
             <tr>
                 <th>Ejercicio</th>

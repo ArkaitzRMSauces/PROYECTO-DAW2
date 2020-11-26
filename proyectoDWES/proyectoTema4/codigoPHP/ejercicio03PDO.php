@@ -46,7 +46,7 @@
                 //Mostramos los datos por pantalla
                 $arrayFormulario['codDepartamento'] = strtoupper($_POST['codDepartamento']); //Todo en mayúsculas
                 $arrayFormulario['descDepartamento'] = ucfirst($_POST['descDepartamento']); //La primera letra en mayúscula
-                $arrayFormulario['volumenNegocio'] = ucfirst($_POST['volumenNegocio']);
+                $arrayFormulario['volumenNegocio'] = $_POST['volumenNegocio'];
             
             try {   
                 $miDB = new PDO(DNS, USER, PASSWORD);//Creamos el objeto PDO, con la conexion
